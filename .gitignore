@@ -19,5 +19,15 @@ output/
 kubeconfig
 *.kubeconfig
 .kube/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+
+.idea/
+.vscode/
+
 .DS_Store
 Thumbs.db
+desktop.ini
