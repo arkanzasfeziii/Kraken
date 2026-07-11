@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from kraken import __version__, __author__
+from kraken import __author__, __version__
 
 TOOL_NAME = "Kraken Framework"
 VERSION = __version__

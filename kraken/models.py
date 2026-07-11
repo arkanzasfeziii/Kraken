@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Any, Dict, List
+from typing import Any
 
 
 @dataclass
@@ -20,7 +20,7 @@ class AttackResult:
 @dataclass
 class Credential:
     type: str
-    value: Dict[str, str]
+    value: dict[str, str]
     source: str
     notes: str = ""
 
@@ -32,9 +32,9 @@ class EngagementContext:
     token: str = ""
     kubeconfig: str = ""
     namespace: str = "default"
-    results: List[AttackResult] = field(default_factory=list)
-    credentials: List[Credential] = field(default_factory=list)
-    loot: Dict[str, Any] = field(default_factory=dict)
+    results: list[AttackResult] = field(default_factory=list)
+    credentials: list[Credential] = field(default_factory=list)
+    loot: dict[str, Any] = field(default_factory=dict)
     k8s_core: Any = None
     k8s_rbac: Any = None
     k8s_apps: Any = None

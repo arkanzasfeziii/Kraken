@@ -4,13 +4,15 @@ from __future__ import annotations
 
 import base64
 import re
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from kraken.logger import log
 from kraken.models import EngagementContext
 
 try:
-    from kubernetes import client as k8s_client, config as k8s_config
+    from kubernetes import client as k8s_client
+    from kubernetes import config as k8s_config
+
     K8S_SDK = True
 except ImportError:
     K8S_SDK = False
@@ -18,6 +20,7 @@ except ImportError:
 try:
     import requests
     import urllib3
+
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
     HAS_REQUESTS = True
 except ImportError:
@@ -42,8 +45,8 @@ def b64d(s: str) -> str:
         return s
 
 
-def scan_for_secrets(text: str) -> List[Dict[str, str]]:
-    found: List[Dict[str, str]] = []
+def scan_for_secrets(text: str) -> list[dict[str, str]]:
+    found: list[dict[str, str]] = []
     for pattern, label in SECRET_PATTERNS:
         for m in re.finditer(pattern, text, re.MULTILINE):
             val = m.group(0) if not m.groups() else m.group(1)
@@ -83,8 +86,7 @@ def k8s_connect(ctx: EngagementContext) -> bool:
         return False
 
 
-def k8s_api_raw(ctx: EngagementContext, path: str,
-                method: str = "GET", body: Any = None) -> Optional[Dict]:
+def k8s_api_raw(ctx: EngagementContext, path: str, method: str = "GET", body: Any = None) -> dict | None:
     if not HAS_REQUESTS:
         return None
     url = f"https://{ctx.api_host}:{ctx.api_port}{path}"

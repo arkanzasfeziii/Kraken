@@ -5,6 +5,7 @@ from kraken.utils.helpers import b64d, scan_for_secrets
 
 def test_b64d_valid():
     import base64
+
     encoded = base64.b64encode(b"hello world").decode()
     assert b64d(encoded) == "hello world"
 

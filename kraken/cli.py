@@ -9,8 +9,12 @@ from kraken.config import COMMAND, TOOL_NAME, VERSION
 from kraken.logger import log
 from kraken.models import EngagementContext
 from kraken.modules import (
-    CloudBridgeModule, EnumModule, EscapeModule,
-    EtcdModule, SAAbuseModule, SecretDumpModule,
+    CloudBridgeModule,
+    EnumModule,
+    EscapeModule,
+    EtcdModule,
+    SAAbuseModule,
+    SecretDumpModule,
 )
 from kraken.output import dump_results, print_banner, print_legal
 
@@ -49,9 +53,12 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--etcd-host", default="")
     p.add_argument("--cert-dir", default="")
     p.add_argument("--target-sa", default="")
-    p.add_argument("--modules", nargs="+",
-                   choices=["enum", "secret-dump", "escape", "sa-abuse", "cloud-bridge", "etcd", "all"],
-                   default=["enum"])
+    p.add_argument(
+        "--modules",
+        nargs="+",
+        choices=["enum", "secret-dump", "escape", "sa-abuse", "cloud-bridge", "etcd", "all"],
+        default=["enum"],
+    )
     p.add_argument("--output", "-o", help="Save results to JSON")
     p.add_argument("--yes", "-y", action="store_true")
     p.add_argument("--version", action="version", version=f"{TOOL_NAME} v{VERSION}")
@@ -65,8 +72,10 @@ def main() -> int:
         return 1
 
     ctx = EngagementContext(
-        api_host=args.api_host, api_port=args.api_port,
-        token=args.token, kubeconfig=args.kubeconfig,
+        api_host=args.api_host,
+        api_port=args.api_port,
+        token=args.token,
+        kubeconfig=args.kubeconfig,
         namespace=args.namespace,
     )
 

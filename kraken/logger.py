@@ -5,8 +5,11 @@ from __future__ import annotations
 from datetime import datetime, timezone
 
 _COLORS = {
-    "INFO": "\033[36m", "OK": "\033[32m", "WARN": "\033[33m",
-    "ERR": "\033[31m", "CRIT": "\033[35m",
+    "INFO": "\033[36m",
+    "OK": "\033[32m",
+    "WARN": "\033[33m",
+    "ERR": "\033[31m",
+    "CRIT": "\033[35m",
 }
 _RESET = "\033[0m"
 
